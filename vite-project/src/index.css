@@ -1,0 +1,77 @@
+/* src/index.css */
+
+/* 라이트 모드 강제 (브라우저/OS 다크모드 무시) */
+:root { color-scheme: light; }
+
+:root{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --ink:#0b1220;
+  --muted:#5b6b84;
+  --border:#e5e9f0;
+  --pri:#2563eb;
+  --acc:#10b981;
+  --warn:#f59e0b;
+  --danger:#e11d48;
+  --chip:#eef2ff;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  color:var(--ink);
+  background: var(--bg);
+  font:14px/1.6 system-ui,Segoe UI,Roboto,Apple SD Gothic Neo,Malgun Gothic,sans-serif;
+
+  /* 🔆 은은한 라이트 배경 패턴 (SVG 그리드) */
+  background-image:
+    radial-gradient(ellipse 60% 40% at 10% 0%, #ffffff 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(ellipse 70% 50% at 90% 0%, #ffffff 0%, rgba(255,255,255,0) 60%),
+    url("data:image/svg+xml,%3Csvg width='28' height='28' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='28' height='28' fill='none'/%3E%3Cpath d='M0 27.5H28 M27.5 0V28' stroke='%23e9eff6' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: auto, auto, 28px 28px;
+  background-attachment: fixed;
+}
+
+/* 컨테이너/컴포넌트 기본 */
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#60a5fa,#34d399);display:grid;place-items:center;font-weight:800;color:white}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:#fbfdff}
+.nav a.active{background:#eef6ff;border-color:#c0dcff}
+.grid{display:grid;grid-template-columns:240px 1fr;gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;box-shadow:0 10px 20px rgba(15,23,42,.03)}
+.card h2{margin-top:0}
+.row{display:flex;align-items:center;gap:8px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi{background:#f7fbff;border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.kpi .kpi__value{font-size:22px;font-weight:800}
+.kpi .kpi__title{color:var(--muted)}
+.input, select, textarea{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:white}
+.btn{background:var(--pri);color:white;border:0;border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--border)}
+.btn.sm{padding:6px 10px;font-size:12px}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border-bottom:1px solid var(--border);padding:8px;text-align:left}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--chip);border:1px solid #dfe6ff;color:#334155;font-size:12px}
+.chip-warn{background:#fff7ed;border-color:#fde68a;color:#92400e}
+.chip-danger{background:#fff1f2;border-color:#fecdd3;color:#be123c}
+.score{display:grid;place-items:center;width:140px;aspect-ratio:1/1;border-radius:50%;background:conic-gradient(var(--acc) calc(var(--p,0)*1%),#e8eef8 0);position:relative}
+.score::after{content:"";position:absolute;inset:6px;border-radius:inherit;background:white;border:1px solid var(--border)}
+.score span{position:relative;font-size:28px;font-weight:900}
+.meter{height:8px;background:#f0f3f8;border-radius:999px;border:1px solid var(--border);margin:8px 0;overflow:hidden}
+.meter .bar{height:100%;background:linear-gradient(90deg,var(--acc),#34d399)}
+.pill{border-radius:999px;padding:2px 8px;border:1px solid var(--border);font-size:12px}
+.pill.in_progress{background:#eef2ff;border-color:#c7d2fe}
+.pill.released{background:#ecfdf5;border-color:#bbf7d0}
+.pill.disputed{background:#fff1f2;border-color:#fecdd3}
+.footer{opacity:.7;margin-top:20px;text-align:center}
+.sidebar .group{display:flex;flex-direction:column;gap:6px}
+.sidebar .title{font-size:12px;color:var(--muted)}
+.list{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.list .item{display:flex;justify-content:space-between;gap:8px;padding:10px;background:#fff;border-bottom:1px solid var(--border);cursor:pointer}
+.list .item.active{background:#f8fbff}
+.small{font-size:12px;color:var(--muted)}
