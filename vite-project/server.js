@@ -90,7 +90,7 @@ app.post('/pay/return', async (req, res) => {
         const url = `https://sandbox-api.nicepay.co.kr/v1/payments/${encodeURIComponent(tid)}`
         const r = await axios.post(
             url,
-            { amount: Number(amount) || 1000 },
+            { amount: Number(amount) || 550000 },
             { headers: { Authorization: BASIC, 'Content-Type': 'application/json;charset=utf-8' } }
         )
         res
