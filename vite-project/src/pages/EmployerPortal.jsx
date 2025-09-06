@@ -63,7 +63,7 @@ export default function EmployerPortal() {
             window.AUTHNICE.requestPay({
                 clientId: import.meta.env.VITE_NICE_CLIENT_KEY, // 발급받은 clientId
                 orderId: `JOBPOST-${Date.now()}`,
-                amount: 1000,
+                amount: 55000,
                 goodsName: '공고 등록(테스트)',
                 buyerName: '테스트 사용자',
                 currency: 'KRW',
