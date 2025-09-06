@@ -42,7 +42,7 @@ a{color:inherit;text-decoration:none}
 .nav{display:flex;gap:8px;flex-wrap:wrap}
 .nav a{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:#fbfdff}
 .nav a.active{background:#eef6ff;border-color:#c0dcff}
-.grid{display:grid;grid-template-columns:240px 1fr;gap:12px}
+.grid{display:grid;grid-template-columns:290px 1fr;gap:12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;box-shadow:0 10px 20px rgba(15,23,42,.03)}
 .card h2{margin-top:0}
 .row{display:flex;align-items:center;gap:8px}
@@ -75,3 +75,258 @@ a{color:inherit;text-decoration:none}
 .list .item{display:flex;justify-content:space-between;gap:8px;padding:10px;background:#fff;border-bottom:1px solid var(--border);cursor:pointer}
 .list .item.active{background:#f8fbff}
 .small{font-size:12px;color:var(--muted)}
+
+
+/* ========== Calendar ========== */
+.calendar {
+  --gap: 10px;
+  --radius: 12px;
+}
+
+.calendar .cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.calendar .cal-title {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.calendar .legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap
+}
+
+.calendar .legend .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #374151;
+  background: var(--chip);
+  border: 1px solid #dfe6ff;
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
+/* 요일/그리드 7열 */
+.calendar .cal-weekdays,
+.calendar .cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--gap);
+}
+
+.calendar .cal-weekdays {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-weight: 700;
+  text-align: center
+}
+
+/* 날짜 셀 */
+.calendar .cal-cell {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px;
+  position: relative;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform .12s ease, box-shadow .12s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, .03);
+}
+
+.calendar .cal-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, .06)
+}
+
+.calendar .cal-cell.is-empty {
+  background: transparent;
+  border: 1px dashed var(--border);
+  cursor: default;
+  pointer-events: none
+}
+
+.calendar .date-num {
+  font-weight: 800;
+  color: var(--ink);
+  text-align: right
+}
+
+/* 오늘 강조 */
+.calendar .cal-cell.today {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+  background: #f0f7ff
+}
+
+/* 상태 배지 (기존 디자인 토큰 활용) */
+.pill-badge {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 999px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+}
+
+.pill-work {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #bbf7d0;
+}
+
+/* 출근 */
+.pill-home {
+  background: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+/* 재택 */
+.pill-vac {
+  background: #fff7ed;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+/* 휴가 */
+.pill-absent {
+  background: #fff1f2;
+  color: #9f1239;
+  border-color: #fecdd3;
+}
+
+/* 결근 */
+
+/* 반응형 */
+@media (max-width: 920px) {
+  .calendar .cal-cell {
+    padding: 6px
+  }
+
+  .calendar .pill-badge {
+    font-size: 11px;
+    padding: 5px 7px
+  }
+}
+
+@media (max-width: 640px) {
+  .calendar .legend {
+    display: none
+  }
+
+  .calendar .pill-badge {
+    display: none
+  }
+
+  /* 모바일에선 혼잡 방지 */
+}
+
+
+/* ===== Modal (Popup) ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(10, 15, 25, .45);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.modal {
+  width: min(820px, 100%);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, .25);
+  animation: pop .16s ease-out;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(.96);
+    opacity: .6
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1
+  }
+}
+
+.modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal__title {
+  font-size: 16px;
+  font-weight: 800
+}
+
+.modal__body {
+  padding: 14px 16px;
+  max-height: 70vh;
+  overflow: auto
+}
+
+.modal__foot {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.iconbtn {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer
+}
+
+.row.gap8 {
+  gap: 8px
+}
+
+/* 문서 카드 & 버전 리스트 */
+.doccard{display:flex;justify-content:space-between;gap:8px;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.docmeta .title{font-weight:800}
+.docmeta .sub{font-size:12px;color:var(--muted)}
+.versions{margin-top:8px;border-top:1px dashed var(--border);padding-top:8px;display:flex;flex-direction:column;gap:6px}
+.version{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.badge-ok{background:#ecfdf5;border-color:#bbf7d0;color:#065f46}
+.badge-pending{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.badge-reject{background:#fff1f2;border-color:#fecdd3;color:#9f1239}
+/* 문서 카드 & 버전 리스트 */
+
+/* 문서 카드 & 버전 리스트 */
+.doccard{display:flex;justify-content:space-between;gap:8px;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.docmeta .title{font-weight:800}
+.docmeta .sub{font-size:12px;color:var(--muted)}
+.versions{margin-top:8px;border-top:1px dashed var(--border);padding-top:8px;display:flex;flex-direction:column;gap:6px}
+.version{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.badge-ok{background:#ecfdf5;border-color:#bbf7d0;color:#065f46}
+.badge-pending{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+.badge-reject{background:#fff1f2;border-color:#fecdd3;color:#9f1239}

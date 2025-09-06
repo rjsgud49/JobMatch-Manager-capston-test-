@@ -13,6 +13,8 @@ import CandidatePortal from './pages/CandidatePortal'
 import EmployerPortal from './pages/EmployerPortal'
 import MyProfile from './pages/MyProfile'
 import MyApplications from './pages/MyApplications'
+import Employee from './pages/Employee'
+import PayReturn from './pages/PayReturn'
 
 export default function App() {
   return (
@@ -53,6 +55,9 @@ export default function App() {
         <Route path="/user/employer" element={<EmployerPortal />} />
         <Route path="/user/profile" element={<MyProfile />} />
         <Route path="/user/apps" element={<MyApplications />} />
+        <Route path="/user/employee" element={<Employee />} />
+
+        <Route path="/pay/return" element={<PayReturn />} />
       </Routes>
       <footer className="footer">© {new Date().getFullYear()} JobMatch Manager • Demo</footer>
     </div>
